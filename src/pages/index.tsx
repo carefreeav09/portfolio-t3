@@ -77,11 +77,15 @@ const Home: NextPage = () => {
               </svg>
 
               <div
-                className="rounded-mg visible absolute top-full left-0 right-0 mt-1 h-full flex-1 rounded-lg bg-gray-900 opacity-100 duration-500 ease-in-out peer-hover:visible peer-hover:opacity-100"
+                className="rounded-mg visible absolute top-full left-0 right-0 mt-1 h-full flex-1 rounded-lg bg-black opacity-0 duration-500 ease-in-out peer-hover:visible peer-hover:opacity-100"
                 id="navbar-dropdown"
               >
                 XD
               </div>
+            </div>
+
+            <div className="flex flex-1 rounded-lg bg-gray-900 p-2 shadow-md shadow-gray-900/50">
+              I AM HERE
             </div>
           </div>
         </div>
