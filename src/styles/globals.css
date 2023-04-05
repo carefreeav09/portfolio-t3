@@ -5,3 +5,8 @@
 * {
   font-family: 'Montserrat', cursive;
 }
+
+body {
+  overflow: hidden;
+  max-height: 100vh;
+}
