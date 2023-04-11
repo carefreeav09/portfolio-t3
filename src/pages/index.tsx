@@ -92,7 +92,7 @@ const Home: NextPage = () => {
               </div>
             </div>
 
-            <div className="z-10 flex flex-1 items-stretch justify-start gap-2 rounded-lg pt-2 shadow-md shadow-gray-900/50">
+            <div className="itemstha-stretch z-10 flex flex-1 justify-start gap-2 rounded-lg pt-2 shadow-md shadow-gray-900/50">
               <div className="flex w-full flex-[0.7_1_0] flex-col items-start justify-start gap-4">
                 <Image
                   src="/images/home.jpg"

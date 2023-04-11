@@ -81,10 +81,10 @@ const SocialsHome = () => {
                 gradientTransform="matrix(0 -253.715 235.975 0 68 275.717)"
                 gradientUnits="userSpaceOnUse"
               >
-                <stop stop-color="#FD5" />
-                <stop offset=".1" stop-color="#FD5" />
-                <stop offset=".5" stop-color="#FF543E" />
-                <stop offset="1" stop-color="#C837AB" />
+                <stop stopColor="#FD5" />
+                <stop offset=".1" stopColor="#FD5" />
+                <stop offset=".5" stopColor="#FF543E" />
+                <stop offset="1" stopColor="#C837AB" />
               </radialGradient>
               <radialGradient
                 id="skillIconsInstagram1"
@@ -94,9 +94,9 @@ const SocialsHome = () => {
                 gradientTransform="matrix(22.25952 111.2061 -458.39518 91.75449 -42.881 18.441)"
                 gradientUnits="userSpaceOnUse"
               >
-                <stop stop-color="#3771C8" />
-                <stop offset=".128" stop-color="#3771C8" />
-                <stop offset="1" stop-color="#60F" stop-opacity="0" />
+                <stop stopColor="#3771C8" />
+                <stop offset=".128" stopColor="#3771C8" />
+                <stop offset="1" stopColor="#60F" stop-opacity="0" />
               </radialGradient>
             </defs>
           </g>
