@@ -20,17 +20,18 @@ model Example {
     updatedAt DateTime @updatedAt
 }
 
-
 model Posts {
     id        String   @id @default(cuid())
     createdAt DateTime @default(now())
     updatedAt DateTime @updatedAt
     title     String
-    content   String? @db.Text
+    slug      String
+    content   String?  @db.Text
     published Boolean  @default(false)
     authorId  String
-    thumbnail String 
-    images   String[]
+    thumbnail String
+    images    String[]
+    tags      String[]
 }
 
 // Necessary for Next auth

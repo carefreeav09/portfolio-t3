@@ -92,8 +92,8 @@ const Home: NextPage = () => {
               </div>
             </div>
 
-            <div className="itemstha-stretch z-10 flex flex-1 justify-start gap-2 rounded-lg pt-2 shadow-md shadow-gray-900/50">
-              <div className="flex w-full flex-[0.7_1_0] flex-col items-start justify-start gap-4">
+            <div className="z-10 flex flex-1 items-stretch justify-start gap-2 rounded-lg pt-2 shadow-md shadow-gray-900/50">
+              <div className="flex w-full flex-[0.5] flex-col items-start justify-start gap-4">
                 <Image
                   src="/images/home.jpg"
                   width={500}
@@ -103,6 +103,7 @@ const Home: NextPage = () => {
                     objectFit: "fill",
                     objectPosition: "center",
                   }}
+                  className="h-full w-full rounded-xl"
                 />
 
                 <div className="flex w-full items-start justify-between gap-2 rounded-xl bg-[#1e1b1e] px-2 py-2">

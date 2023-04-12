@@ -96,7 +96,7 @@ const SocialsHome = () => {
               >
                 <stop stopColor="#3771C8" />
                 <stop offset=".128" stopColor="#3771C8" />
-                <stop offset="1" stopColor="#60F" stop-opacity="0" />
+                <stop offset="1" stopColor="#60F" stopOpacity="0" />
               </radialGradient>
             </defs>
           </g>
