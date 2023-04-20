@@ -1,18 +1,21 @@
 /* eslint-disable @typescript-eslint/ban-ts-comment */
 /* eslint-disable @typescript-eslint/no-unsafe-member-access */
 /* eslint-disable @typescript-eslint/no-unsafe-assignment */
-import type { ReactElement } from "react";
 import { useState } from "react";
-import { Formik } from "formik";
+import { Formik, Field } from "formik";
 import { useSession } from "next-auth/react";
 import Image from "next/image";
-
-import Main from "~/components/layouts/Main.layout";
-
-import "react-quill/dist/quill.snow.css";
-import { QUILL_FORMAT, QUILL_MODULE } from "~/utils/quill";
 import dynamic from "next/dynamic";
+import { useRouter } from "next/router";
+import type { ReactElement } from "react";
+
+import { api } from "~/utils/api";
+import "react-quill/dist/quill.snow.css";
+import MultiSelect from "~/components/Select";
+import Main from "~/components/layouts/Main.layout";
+import { QUILL_FORMAT, QUILL_MODULE } from "~/utils/quill";
 import uploadFile, { type ICloudinaryImage } from "~/utils/upload";
+import { tag_options } from "~/utils/common";
 
 const ReactQuill = dynamic(() => import("react-quill"), { ssr: false });
 
@@ -27,30 +30,40 @@ interface IPOSTS_CREATE {
 
 const Posts_Create = () => {
   const sessionData = useSession();
+  const router = useRouter();
+  const createPosts = api.posts.create.useMutation({
+    onSuccess: (data) => {
+      console.log(data);
+
+      if (data) {
+        void router.push("/admin/posts");
+      }
+    },
+  });
 
   const [content, setContent] = useState("");
   const [thumbnail, setThumbnail] = useState<File | null>(null);
 
   const handleSubmit = async (values: IPOSTS_CREATE) => {
-    const formData = new FormData();
-    formData.append("title", values.title);
-    formData.append("content", content);
-    formData.append("published", values.published.toString());
-    formData.append("authorId", sessionData?.data?.user?.id || "carefreeav");
-    values.images.forEach((image) => {
-      formData.append("images", image);
-    });
-    values.tags.forEach((tag) => {
-      formData.append("tags", tag);
-    });
-
+    const slug = values.title.toLowerCase().replace(/ /g, "-");
     if (values.thumbnail as File) {
       const fileURL: ICloudinaryImage | undefined = await uploadFile(
         values.thumbnail as File
       );
 
       if (fileURL && fileURL.secure_url) {
-        formData.set("thumbnail", fileURL.secure_url);
+        const formData = {
+          title: values.title,
+          published: false,
+          authorId: sessionData?.data?.user?.id || "carefreeav",
+          thumbnail: fileURL.secure_url,
+          content,
+          images: [],
+          tags: values.tags,
+          slug,
+        };
+
+        createPosts.mutate(formData);
       }
     }
   };
@@ -158,14 +171,21 @@ const Posts_Create = () => {
                         />
 
                         {values.thumbnail && thumbnail ? (
-                          <Image
-                            //@ts-ignore
-                            src={thumbnail}
-                            width={50}
-                            height={50}
-                            alt="uploaded-thumbnail"
-                            className="h-96 w-full"
-                          />
+                          <div className="flex items-center justify-start gap-4">
+                            <Image
+                              //@ts-ignore
+                              src={thumbnail}
+                              width={50}
+                              height={50}
+                              alt="uploaded-thumbnail"
+                              className="h-40 w-40"
+                            />
+
+                            <p className="text-sm">
+                              {" "}
+                              Click here to upload a different photo
+                            </p>
+                          </div>
                         ) : (
                           <div className="flex flex-col items-center justify-center py-7">
                             <svg
@@ -192,9 +212,27 @@ const Posts_Create = () => {
               </div>
             </div>
 
+            <div className="mb-4">
+              <label
+                className="block font-bold text-gray-700"
+                htmlFor="content"
+              >
+                Tags
+              </label>
+
+              <Field
+                name="tags"
+                id="tags"
+                placeholder="Tags"
+                isMulti={true}
+                component={MultiSelect}
+                options={tag_options}
+              />
+            </div>
+
             <button
               type="submit"
-              className="rounded bg-[#2C3543] py-2 px-4 font-bold text-white hover:bg-[#212c3d]"
+              className="mb-5 rounded bg-[#2C3543] py-2 px-4 font-bold text-white hover:bg-[#212c3d]"
             >
               Submit
             </button>

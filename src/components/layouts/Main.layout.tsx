@@ -16,14 +16,14 @@ const Main = ({ children }: { children: React.ReactNode }) => {
         <Header />
       </div>
 
-      <div className="flex h-full items-stretch justify-start">
+      <div className="mb-5 flex h-full items-stretch justify-start">
         <div
           id="sidebar"
           className="flex-[0.3] bg-[#2C3543] shadow-[6px_-14px_15px_0px_#2c3543]"
         >
           <Sidebar />
         </div>
-        <section className="flex-1 self-stretch p-5 text-black">
+        <section className=" flex-1 self-stretch p-5 text-black">
           {children}
         </section>
       </div>
