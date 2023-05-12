@@ -8,5 +8,50 @@
 
 body {
   /* overflow:  */
-  max-height: 100vh;
+  min-height: 100vh;
+}
+
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: red;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: blue;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: green;
+}
+
+/*  Hello world text */
+
+.hello-world {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 72px;
+  font-weight: 700;
+  color: #fff;
+  text-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+  opacity: 0;
+}
+
+.nightmare-div {
+  background: #333;
+  width: 300px;
+  height: 300px;
+  border-radius: 10%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  gap: 10px
 }
