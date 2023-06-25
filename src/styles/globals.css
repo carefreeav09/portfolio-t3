@@ -39,19 +39,74 @@ body {
   transform: translate(-50%, -50%);
   font-size: 72px;
   font-weight: 700;
-  color: #fff;
-  text-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+  color: #333;
   opacity: 0;
 }
 
-.nightmare-div {
-  background: #333;
-  width: 300px;
-  height: 300px;
-  border-radius: 10%;
+.main-container {
+  min-width: 100vw;
+  height: 100vh;
+  color: white;
   display: flex;
   align-items: center;
   justify-content: center;
+  gap: 10px;
+  background-color: #121212;
+}
+
+.main-container-animated {
   opacity: 0;
-  gap: 10px
+  width: 100vw;
+}
+
+.main-container-scroll {
+  height: 100vh;
+  width: 100vw;
+  background-color: black;
+  margin: 0rem;
+  overflow: hidden;
+}
+
+.page-sections {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  background-color: black;
+  margin: 0rem;
+  overflow: hidden;
+  position: relative;
+  height: 100vh;
+  width: 100vw;
+}
+
+.page-item {
+  height: 400px;
+  width: 400px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.page-sections .close-icon {
+  position: absolute;
+  top: 1%;
+  right: 1%;
+  opacity: 0;
+}
+
+.page-item-img {
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
+  border-radius: 20px;
+  cursor: pointer;
+}
+
+.item-wrapper {
+  display: none;
+  justify-content: flex-start;
+  align-items: center;
+  opacity: 0;
 }

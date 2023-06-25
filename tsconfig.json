@@ -28,7 +28,8 @@
     "**/*.tsx",
     "**/*.cjs",
     "**/*.mjs",
-    "src/pages/index.tsx"
+    "src/pages/index.tsx",
+    "src/pages/App.tsx"
   ],
   "exclude": ["node_modules"]
 }
