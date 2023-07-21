@@ -1,13 +1,25 @@
+/* eslint-disable @next/next/no-img-element */
 import React from "react";
+import Image from "next/image";
+
+import solfulLogo from "../../assets/images/solful-logo.png";
+import solfulImage from "../../assets/images/solful-home.png";
 
 const projects = [
   {
     id: 1,
-    title: "Project 1",
+    title: "Solful Network",
     description:
       "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean at sem ac neque convallis aliquam at vitae leo.",
     techStack: ["React", "Tailwind CSS", "Node.js"],
     type: "web",
+    logo: solfulLogo,
+    images: [
+      {
+        src: solfulImage,
+        alt: "Solful Home page",
+      },
+    ],
   },
   {
     id: 2,
@@ -16,6 +28,13 @@ const projects = [
       "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean at sem ac neque convallis aliquam at vitae leo.",
     techStack: ["Vue.js", "SCSS", "Firebase"],
     type: "web",
+    logo: solfulLogo,
+    images: [
+      {
+        src: solfulImage,
+        alt: "Solful Home page",
+      },
+    ],
   },
   {
     id: 3,
@@ -24,13 +43,20 @@ const projects = [
       "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean at sem ac neque convallis aliquam at vitae leo.",
     techStack: ["Angular", "Bootstrap", "MongoDB"],
     type: "mobile",
+    logo: solfulLogo,
+    images: [
+      {
+        src: solfulImage,
+        alt: "Solful Home page",
+      },
+    ],
   },
 ];
 
 const ProjectList = () => {
   const [projectType, setProjectType] = React.useState("all");
   return (
-    <div className="item-content min-h-screen bg-[#121212] py-8">
+    <div className="item-content min-h-screen bg-[#121212] p-20 py-8">
       <div className="container mx-auto">
         <div className="mb-8 flex items-center justify-center gap-6">
           <h1 className="text-center text-4xl font-bold text-white">
@@ -103,17 +129,25 @@ const ProjectList = () => {
                 >
                   <div className="w-1/2">
                     <div className="rounded-lg p-6 ">
-                      <h2 className="mb-4 text-xl font-semibold text-white">
+                      {project?.logo && (
+                        <Image
+                          src={solfulLogo}
+                          alt="Solful Logo"
+                          className="mb-4 h-80 w-80"
+                        />
+                      )}
+
+                      <h2 className="mb-4 text-6xl font-bold text-white">
                         {project.title}
                       </h2>
-                      <p className="mb-4 text-gray-300">
+                      <p className="mb-4 text-2xl text-gray-300">
                         {project.description}
                       </p>
                       <div className="flex flex-wrap">
                         {project.techStack.map((tech, techIndex) => (
                           <span
                             key={techIndex}
-                            className="mr-2 mb-2 rounded-full bg-blue-500 py-1 px-2 text-xs text-white"
+                            className="mr-2 mb-2 rounded-full bg-blue-500 py-1 px-2 text-lg text-white"
                           >
                             {tech}
                           </span>

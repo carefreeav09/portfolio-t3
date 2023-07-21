@@ -3,7 +3,8 @@ import { Timeline, Tween } from "react-gsap";
 import App from "./App";
 
 const Home = () => {
-  const [timer, setTimer] = useState(8);
+  // 8 seconds for full animation, 0 for none.
+  const [timer, setTimer] = useState(0);
 
   useEffect(() => {
     if (timer) {

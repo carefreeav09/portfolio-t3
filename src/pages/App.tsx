@@ -3,9 +3,11 @@ import React from "react";
 import { gsap } from "gsap";
 import { Timeline, Tween } from "react-gsap";
 
+import Image from "next/image";
 
 import ProjectList from "~/components/Projects";
-import { time } from "console";
+
+import logo from "../assets/images/newlogo.png";
 
 const App = () => {
   const [openedId, setOpenedId] = React.useState<number | null>(null);
@@ -14,20 +16,25 @@ const App = () => {
     setOpenedId(null);
     const timeline = gsap.timeline();
 
+    timeline.to(`.close-icon`, {
+      opacity: 0,
+    });
     timeline.to(`.item-content`, {
       opacity: 0,
       duration: 0.1,
     });
 
-    timeline.to(`.page-item`, {
-      height: "200px",
-      width: "200px",
-      duration: 1.5,
-      ease: "expo.inOut",
-    });
-    timeline.to(`.close-icon`, {
-      opacity: 0,
-    });
+    timeline.to(
+      `.page-item`,
+      {
+        height: "200px",
+        width: "200px",
+        duration: 1.5,
+        ease: "expo.inOut",
+      },
+      ">"
+    );
+
     timeline.to(".page-item", {
       opacity: 0,
       display: "flex",
@@ -70,6 +77,22 @@ const App = () => {
       opacity: 0,
     });
 
+    timeline.fromTo(
+      `#page-item-${id}`,
+      {
+        height: "200px",
+        width: "200px",
+        backgroundColor: "#121212",
+      },
+      {
+        height: "100vh",
+        width: "100vw",
+        duration: 1.5,
+        ease: "expo.inOut",
+        backgroundColor: "#121212",
+      }
+    );
+
     timeline.to(`.item-wrapper`, {
       display: "block",
       duration: 0.1,
@@ -78,13 +101,6 @@ const App = () => {
       opacity: 1,
       backgroundColor: "#121212",
     });
-
-    timeline.fromTo(
-      `#page-item-${id}`,
-      { height: "200px", width: "200px" },
-      { height: "100vh", width: "100vw", duration: 1.5, ease: "expo.inOut" },
-      ">"
-    );
 
     timeline.to(
       `.item-content`,
@@ -123,46 +139,61 @@ const App = () => {
       <Timeline
         target={
           <React.Fragment>
-            <div className="page-sections">
-              <div
-                className="close-icon"
-                onClick={() => {
-                  handleClose();
-                }}
-              >
-                X
-              </div>
-              <div
-                id="page-item-1"
-                onClick={(event) => {
-                  handleGSAPTransitionFunctions(1, [2]);
-                  event.stopPropagation();
-                }}
-                className="page-item"
-              >
-                <div className="item-logo">Projects</div>
-
-                <div
-                  className="item-wrapper"
-                  onClick={(event) => event.stopPropagation()}
-                >
-                  <ProjectList />
+            <div className="page-section">
+              <div className="navbar-wrapper">
+                <div className="navbar-brand">
+                  <Image
+                    src={logo}
+                    alt="new-logo"
+                    style={{
+                      height: "60px",
+                      width: "60px",
+                    }}
+                  />
                 </div>
               </div>
-              <div
-                id="page-item-2"
-                className="page-item"
-                onClick={() => {
-                  handleGSAPTransitionFunctions(2, [1]);
-                }}
-              >
-                <div className="item-logo">Tech Stacks</div>
+              <div className="page-items-container">
+                <div
+                  className="close-icon text-lg font-bold"
+                  onClick={() => {
+                    handleClose();
+                  }}
+                >
+                  X
+                </div>
 
                 <div
-                  className="item-wrapper"
-                  onClick={(event) => event.stopPropagation()}
+                  id="page-item-1"
+                  onClick={(event) => {
+                    handleGSAPTransitionFunctions(1, [2]);
+                    event.stopPropagation();
+                  }}
+                  className="page-item"
                 >
-                  <ProjectList />
+                  <div className="item-logo">Projects</div>
+
+                  <div
+                    className="item-wrapper"
+                    onClick={(event) => event.stopPropagation()}
+                  >
+                    <ProjectList />
+                  </div>
+                </div>
+                <div
+                  id="page-item-2"
+                  className="page-item"
+                  onClick={() => {
+                    handleGSAPTransitionFunctions(2, [1]);
+                  }}
+                >
+                  <div className="item-logo">Tech Stacks</div>
+
+                  <div
+                    className="item-wrapper"
+                    onClick={(event) => event.stopPropagation()}
+                  >
+                    <ProjectList />
+                  </div>
                 </div>
               </div>
             </div>

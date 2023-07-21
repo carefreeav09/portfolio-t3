@@ -17,17 +17,17 @@ body {
 
 /* Track */
 ::-webkit-scrollbar-track {
-  background: red;
+  background: transparent;
 }
 
 /* Handle */
 ::-webkit-scrollbar-thumb {
-  background: blue;
+  background: transparent;
 }
 
 /* Handle on hover */
 ::-webkit-scrollbar-thumb:hover {
-  background: green;
+  background: transparent;
 }
 
 /*  Hello world text */
@@ -51,7 +51,7 @@ body {
   align-items: center;
   justify-content: center;
   gap: 10px;
-  background-color: #121212;
+  background-color: #1a1c1e;
 }
 
 .main-container-animated {
@@ -62,38 +62,65 @@ body {
 .main-container-scroll {
   height: 100vh;
   width: 100vw;
-  background-color: black;
+  background-color: 1a1c1e;
   margin: 0rem;
   overflow: hidden;
 }
 
-.page-sections {
+.page-section {
+  height: 100vh;
+  width: 100vw;
+  background-color: #1a1c1e;
+  margin: 0rem;
+  overflow: hidden;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.page-items-container {
   display: flex;
   flex-direction: row;
   align-items: center;
   justify-content: center;
   gap: 10px;
-  background-color: black;
+  background-color: 1a1c1e;
   margin: 0rem;
-  overflow: hidden;
+  overflow: auto;
   position: relative;
-  height: 100vh;
-  width: 100vw;
+  /* height: 100vh;
+  width: 100vw; */
 }
 
 .page-item {
-  height: 400px;
-  width: 400px;
+  height: 200px;
+  width: 200px;
   display: flex;
   align-items: center;
   justify-content: center;
+  background-color: #121212;
+  cursor: pointer;
+  box-shadow: 0 0 0 0 transparent;
+  transition: box-shadow 1s ease-in;
 }
 
-.page-sections .close-icon {
+.page-items-container .close-icon {
   position: absolute;
   top: 1%;
   right: 1%;
   opacity: 0;
+}
+
+.main-text {
+  position: absolute;
+  top: 25%;
+  left: 50%;
+  transform: translate(-50%);
+  opacity: 1;
+  font-size: 72px;
+  font-weight: 700;
+  color: white;
 }
 
 .page-item-img {
@@ -109,4 +136,24 @@ body {
   justify-content: flex-start;
   align-items: center;
   opacity: 0;
+  overflow-x: hidden;
+}
+
+.page-item:hover {
+  box-shadow: #222 1px 5px 11px 3px;
+  transition: box-shadow 1s ease-in;
+}
+
+/* Navbar */
+
+.navbar-wrapper {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  background: #1a1c1e;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px;
 }
